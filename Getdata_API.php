@@ -33,7 +33,7 @@ if(isset($_REQUEST['get_social_detail']))
 		$Json['aaData'][$k][]= $Row['age'];
 		$Json['aaData'][$k][]= $Row['salary'];
         $k++;
-	    }
+	}
 	$Json['iTotalDisplayRecords'] = 46;
 
 	$Json['sEcho'] = $_REQUEST['sEcho'];
