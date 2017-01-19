@@ -2,7 +2,13 @@
 include 'config.php';
 if(isset($_REQUEST['get_social_detail']))
 {
+	$columns=array(
+    0=>'Name',
+    1=>'City',
+    2=>'Age',
+    3=>'Salary');
 	$sql="select * from employee where 1=1";
+	
 	$Json['aaData'] = array();
 	if( !empty($_REQUEST['sSearch'])){// if there is a search parameter, $requestData['search']['value'] contains search parameter
     $sql.=" AND ( name LIKE '".$_REQUEST['sSearch']."%' ";    
@@ -10,7 +16,11 @@ if(isset($_REQUEST['get_social_detail']))
     $sql.="OR city LIKE '".$_REQUEST['sSearch']."%' ";
     $sql.=" OR age LIKE '".$_REQUEST['sSearch']."%' )";
     }
-     if ( isset( $_REQUEST['iDisplayStart'] ) && $_REQUEST['iDisplayLength'] != '-1' )
+    if(isset( $_REQUEST['iSortCol_0'] )  && isset($_REQUEST['sSortDir_0']))	
+	{
+		    $sql .= " Order by ".$columns[$_REQUEST['iSortCol_0']] ." ". $_REQUEST['sSortDir_0'];
+	}	
+    if ( isset( $_REQUEST['iDisplayStart'] ) && $_REQUEST['iDisplayLength'] != '-1' )
     {
             $sql.= " LIMIT ".$_REQUEST['iDisplayStart'].", ".$_REQUEST['iDisplayLength'];
     }
@@ -24,7 +34,8 @@ if(isset($_REQUEST['get_social_detail']))
 		$Json['aaData'][$k][]= $Row['salary'];
         $k++;
 	    }
-	$Json['iTotalDisplayRecords'] = $k+1;
+	$Json['iTotalDisplayRecords'] = 46;
+
 	$Json['sEcho'] = $_REQUEST['sEcho'];
 	echo json_encode($Json);
 	exit;	

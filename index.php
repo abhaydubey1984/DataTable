@@ -16,6 +16,7 @@
 					"bServerSide": true,
 					"info": false,
 					"serverSide": true,
+					"buttons": ['copy', 'excel', 'pdf'],
 					"ordering": true,
 					"searching": true,
 					"order": [[ 3, "desc" ]],
