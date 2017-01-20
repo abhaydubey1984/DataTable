@@ -35,7 +35,6 @@ if(isset($_REQUEST['get_social_detail']))
         $k++;
 	}
 	$Json['iTotalDisplayRecords'] = 46;
-
 	$Json['sEcho'] = $_REQUEST['sEcho'];
 	echo json_encode($Json);
 	exit;	
